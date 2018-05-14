@@ -148,19 +148,48 @@ else
                                 $sql = 'select * from messages where id ='.$id;
                                 $result = $db->query($sql);
                                 if($row = $result->fetch_assoc()) { //print_r($row);
+
+                                    $fromid = $row["fromid"];
+                                    $toid = $row["id"];
+                            
+                                    // Get to ID details //
+                                    $sql = 'select * from users where id = '.$toid;
+
+                                    $result = $db->query($sql);
+                                    if($row1 = $result->fetch_assoc()) {                            
+                                        $toemail = $row1["email"];                            
+                                    }
+                                    // Get From ID details //
+                                    $sql = 'select * from users where id = '.$fromid;
+
+                                    $result = $db->query($sql);
+                                    if($row2 = $result->fetch_assoc()) {                            
+                                        $fromemail = $row2["email"];                            
+                                    }
+
                                     
                             ?>    
+                                <tr>
+                                <td><b>From :</b></td>
+                                <td><input type="text" value="<?php echo $fromemail;?>" size="50" readonly="readonly"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><b>To :</b></td>
+                                <td><input type="text" value="<?php echo $toemail;?>" size="50" readonly="readonly"></td>
+                                
+                            </tr>
                                 <tr class="unread" >
-                                       <td class="view-message ">Subject: <?php echo $row['title'];?></td>
+                                       <td class="view-message ">Subject: </td><td><?php echo $row['title'];?></td>
                                        
                                        
                                    </tr>
-                                   <tr><td class="view-message ">Message: <?php echo $row['body'];?></td></tr>
+                                   <tr><td class="view-message ">Message: </td><td><?php echo $row['body'];?></td></tr>
                                    <?php
                                 }
                                 ?>
                             <tr>
-                                <td>
+                                <td colspan="2">
                                      <input type="button" name='reply' value='reply' class="btn btn-primary" onclick="location.href='<?php echo BASE_URL;?>reply.php?id=<?php echo $id; ?>'"> 
                                      <input type="button" name='delete' value='delete'  class="btn btn-primary" onclick="location.href='<?php echo BASE_URL;?>trash.php?id=<?php echo $id; ?>'">  
                                 </td>

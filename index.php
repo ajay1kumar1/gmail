@@ -215,6 +215,9 @@ else
                                 if($result->data !=0){
                                     foreach($result->data as $res){
                                         // echo $res->id;
+                                        $title = $res->title;
+                                        $body = $res->body;
+
                                          ?>
                                          
                                    <tr class="unread" >
@@ -222,8 +225,8 @@ else
                                            <input type="checkbox" class="mail-checkbox" name="read" value='<?php echo $res->id;?>'>
                                        </td>
                                        <td class="view-message "></td>
-                                       <td class="view-message  dont-show"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php echo $res->title;?></a></td>
-                                       <td class="view-message "><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php echo $res->body;?></a></td>                                  
+                                       <td class="view-message  dont-show"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php if(strlen($title) >15) {echo substr($title,0,15)."...";} else { echo $title;}?></a></td>
+                                       <td class="view-message "><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php if(strlen($body) >15) {echo substr($body,0,15)."...";} else { echo $body;}?></a></td>                                  
                                        <td class="view-message  text-right" colspan="2"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php echo $res->sdate;?></a></td>
                                    </tr>
                                    

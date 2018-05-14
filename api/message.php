@@ -20,7 +20,7 @@ switch($fetch){
         $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "inbox"';
         break;
     case 'sent':
-        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "inbox"';
+        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "sent"';
         break;
     case 'draft':
         $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "draft"';

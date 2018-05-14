@@ -30,6 +30,14 @@ $db = $database->getConnection();
     <link href="css/style.css" rel="stylesheet" id="bootstrap-css">    
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script language="javascript">
+     function callme(){
+        alert(1);
+        $('input[name=amessage]').val(document.getElementById("rmessage").innerHTML);       
+        
+        return true;
+     }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -197,25 +205,60 @@ $db = $database->getConnection();
                             $toid = $row["id"];
                             $title = $row["title"];
                             $body = $row["body"];
+                            $sdate = $row['sdate'];
+                            $sdate = date('l jS \of F Y h:i:s A',strtotime($sdate));
                         }
-                        ?>
 
+                        // Get to ID details //
+                        $sql = 'select * from users where id = '.$toid;
+
+                        $result = $db->query($sql);
+                        if($row = $result->fetch_assoc()) {                            
+                            $toemail = $row["email"];                            
+                        }
+                        // Get From ID details //
+                        $sql = 'select * from users where id = '.$fromid;
+
+                        $result = $db->query($sql);
+                        if($row = $result->fetch_assoc()) {                            
+                            $fromemail = $row["email"];                            
+                        }
+
+                        ?>
+                        <form action="replysubmit.php" onsubmit="return callme();" method="post">
                           <table class="table ">
                             <tbody>
+                            <tr>
+                                <td><b>From :</b></td>
+                                <td><input type="text" name="fromemail" value="<?php echo $fromemail;?>" size="50" readonly="readonly"></td>
+                                
+                            </tr>
+                            <tr>
+                                <td><b>To :</b></td>
+                                <td><input type="text" name="toemail" value="<?php echo $toemail;?>" size="50" readonly="readonly"></td>
+                                
+                            </tr>
                             <tr>
                                 <td>
                                     <b>Subject :</b>
                                 </td>
-                                <td><input type="text" value="<?php echo "Re:".$title;?>" size="50"></td>
+                                <td><input type="text" name="title" value="<?php echo "Re:".$title;?>" size="50"></td>
                                 
                             </tr>
                             <tr>
-                                <td>Message :<td><textarea cols="50" rows="10"><?php echo $body;?></textarea></td></td>
+                                <td>Message :</td><td style="border:1px solid black;"><div contenteditable="true" id="rmessage"><br><p style="margin-left:20px;"><font color="#cccccc">On <?php echo $sdate;?>,<?php echo $fromemail;?> wrote:</font> <br> <?php echo $body;?></p></div></td>
                             </tr>
+                            <td colspan="2">
+                                     <input type="submit" name='reply' value='reply' class="btn btn-primary" > 
+                                     <input type="hidden" name="toid" value="<?php echo $toid;?>">
+                                     <input type="hidden" name="fromid" value="<?php echo $fromid;?>">
+                                     <input type="hidden" name="amessage" id="amessage" value="">  
+                            </td>
 
                                
                           </tbody>
                           </table>
+                    </form>
                       </div>
                   </aside>
               </div>
