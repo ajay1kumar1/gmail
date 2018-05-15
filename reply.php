@@ -32,7 +32,7 @@ $db = $database->getConnection();
     <script src="js/bootstrap.min.js"></script>
     <script language="javascript">
      function callme(){
-        alert(1);
+        //alert(1);
         $('input[name=amessage]').val(document.getElementById("rmessage").innerHTML);       
         
         return true;

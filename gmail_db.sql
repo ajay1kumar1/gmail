@@ -3,7 +3,7 @@
 -- Server version:               5.6.20-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2018-05-15 09:25:14
+-- Date/time:                    2018-05-15 11:26:14
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `messages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Messages log';
 
--- Dumping data for table gmail_db.messages: ~0 rows (approximately)
+-- Dumping data for table gmail_db.messages: ~6 rows (approximately)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id`, `fromid`, `toid`, `fromname`, `toname`, `title`, `body`, `mstatus`, `status`, `sdate`) VALUES
 	(1, 1, 5, 'Ajay SR', 'S SR', 'First message', 'Body message', 'inbox', 1, '2018-05-15 05:56:37'),
@@ -38,7 +38,11 @@ INSERT INTO `messages` (`id`, `fromid`, `toid`, `fromname`, `toname`, `title`, `
 	(3, 1, 5, 'Ajay SR', 'S SR', 'Re:Re:First message', 'Hi there<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:16:10 AM,test@gmail.com wrote:</font> <br> test<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 05:56:37 AM,test@gmail.com wrote:</font> <br> Body message</div></div>', 'inbox', 1, '2018-05-15 09:19:28'),
 	(4, 5, 1, 'Ajay SR', 'S SR', 'test', 'test', 'inbox', 1, '2018-05-15 09:21:40'),
 	(5, 5, 1, 'Ajay SR', 'S SR', 'Re:test', 'test2<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:21:40 AM,test5@gmail.com wrote:</font> <br> test</div>', 'inbox', 1, '2018-05-15 09:22:25'),
-	(6, 1, 5, 'Ajay SR', 'S SR', 'Re:Re:test', 'test3<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:22:25 AM,test5@gmail.com wrote:</font> <br> test2<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:21:40 AM,test5@gmail.com wrote:</font> <br> test</div></div>', 'trash', 1, '2018-05-15 09:22:52');
+	(6, 1, 5, 'Ajay SR', 'S SR', 'Re:Re:test', 'test3<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:22:25 AM,test5@gmail.com wrote:</font> <br> test2<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:21:40 AM,test5@gmail.com wrote:</font> <br> test</div></div>', 'trash', 1, '2018-05-15 09:22:52'),
+	(7, 1, 5, 'Ajay SR', 'S SR', 'Test mail', 'asdf asdfasdf dasf', 'draft', 1, '2018-05-15 11:18:28'),
+	(8, 1, 7, 'Ajay SR', 'S SR', 'First message title', 'test asdfa fsad fds ad fsa test', 'draft', 1, '2018-05-15 11:22:29'),
+	(9, 1, 7, 'Ajay SR', 'S SR', 'First message title', 'test asdfa fsad fds ad fsa test', 'draft', 1, '2018-05-15 11:22:40'),
+	(10, 1, 7, 'Ajay SR', 'S SR', 'Re:First message title', 'gfdhggfdhgfdhgfdhgtest asdfa fsad fds ad fsa test', 'inbox', 1, '2018-05-15 11:25:45');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 

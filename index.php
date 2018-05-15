@@ -24,6 +24,20 @@ else
     <link href="css/style.css" rel="stylesheet" id="bootstrap-css">    
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script> 
+    function draft(){
+       var message =  $('#message').val();
+       var fromid =  $('#fromid').val();
+       var toemail =  $('input[name=toemail]').val();
+       var subject =  $('input[name=subject]').val();
+       
+       var jqxhr = $.get( "<?php echo BASE_URL;?>api/draft.php?message="+escape(message)+"&toemail="+escape(toemail)+"&subject="+escape(subject)+"&fromid="+escape(fromid), function() {
+        alert( "success" );
+        })
+        $('#myModal').css("display","none");
+        
+    }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -77,14 +91,14 @@ else
                                               <div class="form-group">
                                                   <label class="col-lg-2 control-label">Message</label>
                                                   <div class="col-lg-10">
-                                                      <textarea rows="10" cols="30" class="form-control" id="" name="message"  required></textarea>
+                                                      <textarea rows="10" cols="30" class="form-control" id="message" name="message"  required></textarea>
                                                   </div>
                                               </div>
 
                                               <div class="form-group">
                                                   <div class="col-lg-offset-2 col-lg-10">
-                                                      <input type="hidden" name="fromid" value="<?php echo $uid;?>">
-                                                      <button class="btn btn-send" type="submit">Send Mail!</button>
+                                                      <input type="hidden" name="fromid" id="fromid" value="<?php echo $uid;?>">
+                                                      <button class="btn btn-send" type="submit">Send Mail!</button> <button class="btn btn-send btn-primary" type="button" onclick="draft();">Save as Draft</button>
                                                   </div>
                                               </div>
                                           </form>
