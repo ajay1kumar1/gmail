@@ -20,7 +20,7 @@ $db = $database->getConnection();
 
 // Query for user in users table //
 $sql = "INSERT INTO messages ( fromid, toid, fromname, toname, title, body, mstatus, status, sdate) 
-VALUES ( ".$fromid.", ".$toid.", 'Ajay SR', 'S SR', '".$subject."', '".$message."', 'sent', 1, now())";
+VALUES ( ".$fromid.", ".$toid.", 'Ajay SR', 'S SR', '".$subject."', '".$message."', 'inbox', 1, now())";
 
 $result = $db->query($sql);
 echo json_encode(

@@ -3,7 +3,7 @@
 -- Server version:               5.6.20-log - MySQL Community Server (GPL)
 -- Server OS:                    Win32
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2018-05-13 23:55:55
+-- Date/time:                    2018-05-15 09:25:14
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -28,14 +28,17 @@ CREATE TABLE IF NOT EXISTS `messages` (
   `status` tinyint(1) DEFAULT '0',
   `sdate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='Messages log';
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='Messages log';
 
 -- Dumping data for table gmail_db.messages: ~0 rows (approximately)
 /*!40000 ALTER TABLE `messages` DISABLE KEYS */;
 INSERT INTO `messages` (`id`, `fromid`, `toid`, `fromname`, `toname`, `title`, `body`, `mstatus`, `status`, `sdate`) VALUES
-	(1, 1, 2, 'Ajay SR', 'S SR', 'Test mail2', 'test mail two', 'trash', 1, '2018-05-12 23:58:34'),
-	(2, 1, 2, 'Ajay SR', 'S SR', 'Test mail from user 1', 'Test mail from user 1 message part', 'inbox', 1, '2018-05-13 00:05:09'),
-	(3, 1, 2, 'Ajay SR', 'S SR', 'Test mail from user 1', 'yes', 'trash', 1, '2018-05-13 17:26:27');
+	(1, 1, 5, 'Ajay SR', 'S SR', 'First message', 'Body message', 'inbox', 1, '2018-05-15 05:56:37'),
+	(2, 1, 5, 'Ajay SR', 'S SR', 'Re:First message', 'test<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 05:56:37 AM,test@gmail.com wrote:</font> <br> Body message</div>', 'inbox', 1, '2018-05-15 09:16:10'),
+	(3, 1, 5, 'Ajay SR', 'S SR', 'Re:Re:First message', 'Hi there<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:16:10 AM,test@gmail.com wrote:</font> <br> test<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 05:56:37 AM,test@gmail.com wrote:</font> <br> Body message</div></div>', 'inbox', 1, '2018-05-15 09:19:28'),
+	(4, 5, 1, 'Ajay SR', 'S SR', 'test', 'test', 'inbox', 1, '2018-05-15 09:21:40'),
+	(5, 5, 1, 'Ajay SR', 'S SR', 'Re:test', 'test2<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:21:40 AM,test5@gmail.com wrote:</font> <br> test</div>', 'inbox', 1, '2018-05-15 09:22:25'),
+	(6, 1, 5, 'Ajay SR', 'S SR', 'Re:Re:test', 'test3<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:22:25 AM,test5@gmail.com wrote:</font> <br> test2<br><div style="margin-left:20px;"><font color="#cccccc">On Tuesday 15th of May 2018 09:21:40 AM,test5@gmail.com wrote:</font> <br> test</div></div>', 'trash', 1, '2018-05-15 09:22:52');
 /*!40000 ALTER TABLE `messages` ENABLE KEYS */;
 
 
@@ -69,18 +72,18 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='Users table for user information and used for authentication.';
 
--- Dumping data for table gmail_db.users: ~1 rows (approximately)
+-- Dumping data for table gmail_db.users: ~9 rows (approximately)
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` (`id`, `username`, `password`, `firstname`, `lastname`, `email`, `mobile`, `sdate`) VALUES
-	(1, 'test', 'test', 'Aj', 'Rathore', 'aj@gmail.com', '8888888888', '2018-05-12 14:59:03'),
-	(2, 'test2', 'test2', 'Sapna', 'SR', 'sap@gmail.com', '81109922993', '2018-05-13 00:00:53'),
-	(3, 'test3', 'test3', 'Sapna', 'SR', 'sap@gmail.com', '81109922993', '2018-05-13 00:03:53'),
-	(4, 'test4', 'test4', 'Jeetu', 'jaiswal', 'jeetu@gmail.com', '81109922993', '2018-05-13 00:03:53'),
-	(5, 'test5', 'test5', 'Goweb', 'Bar', 'gowebb@gmail.com', '81109922993', '2018-05-13 00:03:53'),
-	(6, 'test6', 'test6', 'sid', 'singh', 'sid@gmail.com', '81109922993', '2018-05-13 00:03:53'),
-	(7, 'test7', 'test7', 'pooja', 'sinha', 'sap@gmail.com', '81109922993', '2018-05-13 00:03:53'),
-	(8, 'test8', 'test8', 'ankit', 'SR', 'sap@gmail.com', '81109922993', '2018-05-13 00:03:53'),
-	(9, 'test9', 'test9', 'poonam', 'jha', 'sap@gmail.com', '81109922993', '2018-05-13 00:03:53');
+	(1, 'test', 'test', 'Aj', 'Rathore', 'test@gmail.com', '8888888888', '2018-05-12 14:59:03'),
+	(2, 'test2', 'test2', 'Sapna', 'SR', 'test2@gmail.com', '81109922993', '2018-05-13 00:00:53'),
+	(3, 'test3', 'test3', 'Sapna', 'SR', 'test3@gmail.com', '81109922993', '2018-05-13 00:03:53'),
+	(4, 'test4', 'test4', 'Jeetu', 'jaiswal', 'test4@gmail.com', '81109922993', '2018-05-13 00:03:53'),
+	(5, 'test5', 'test5', 'Goweb', 'Bar', 'test5@gmail.com', '81109922993', '2018-05-13 00:03:53'),
+	(6, 'test6', 'test6', 'sid', 'singh', 'test6@gmail.com', '81109922993', '2018-05-13 00:03:53'),
+	(7, 'test7', 'test7', 'pooja', 'sinha', 'test7@gmail.com', '81109922993', '2018-05-13 00:03:53'),
+	(8, 'test8', 'test8', 'ankit', 'SR', 'test8@gmail.com', '81109922993', '2018-05-13 00:03:53'),
+	(9, 'test9', 'test9', 'poonam', 'jha', 'test9@gmail.com', '81109922993', '2018-05-13 00:03:53');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -224,10 +224,10 @@ else
                                        <td class="inbox-small-cells">
                                            <input type="checkbox" class="mail-checkbox" name="read" value='<?php echo $res->id;?>'>
                                        </td>
-                                       <td class="view-message "></td>
-                                       <td class="view-message  dont-show"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php if(strlen($title) >15) {echo substr($title,0,15)."...";} else { echo $title;}?></a></td>
-                                       <td class="view-message "><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php if(strlen($body) >15) {echo substr($body,0,15)."...";} else { echo $body;}?></a></td>                                  
-                                       <td class="view-message  text-right" colspan="2"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php echo $res->sdate;?></a></td>
+                                       <td class="view-message1 "></td>
+                                       <td class="view-message2"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php if(strlen($title) >15) {echo substr(strip_tags($title),0,25)."...";} else { echo $title;}?></a></td>
+                                       <td class="view-message3 "><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php if(strlen($body) >15) {echo substr(trim(strip_tags($body)),0,25)."...";} else { echo trim($body);}?></a></td>                                  
+                                       <td class="view-message4  text-right" colspan="2"><a href="<?php echo BASE_URL.'details.php?id='?><?php echo $res->id;?>"><?php echo $res->sdate;?></a></td>
                                    </tr>
                                    
                                          <?php

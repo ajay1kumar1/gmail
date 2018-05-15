@@ -1,7 +1,7 @@
 <?php
 // required headers
-// header("Access-Control-Allow-Origin: *");
-// header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
 
 
 $uid = $_GET['uid'];
@@ -17,19 +17,19 @@ $db = $database->getConnection();
 
 switch($fetch){
     case 'inbox':
-        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "inbox"';
+        $sql = 'select * from messages where toid = '.$uid.' and mstatus = "inbox"'.' order by sdate desc';
         break;
     case 'sent':
-        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "sent"';
+        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "inbox"'.' order by sdate desc';
         break;
     case 'draft':
-        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "draft"';
+        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "draft"'.' order by sdate desc';
         break;
     case 'trash':
-        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "trash"';
+        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "trash"'.' order by sdate desc';
         break; 
     default:
-        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "inbox"';        
+        $sql = 'select * from messages where fromid = '.$uid.' and mstatus = "inbox"'.' order by sdate desc';        
 
 }
 //echo $sql;

@@ -196,13 +196,13 @@ $db = $database->getConnection();
                          </div>
                         <?php
                         $id = $_REQUEST['id'];
-                        $sql = 'select * from messages where id = '.$id;
+                        $sql = 'select * from messages where id = '.$id.' order by sdate desc';
 
                         $result = $db->query($sql);
                         if($row = $result->fetch_assoc()) {
                             
                             $fromid = $row["fromid"];
-                            $toid = $row["id"];
+                            $toid = $row["toid"];
                             $title = $row["title"];
                             $body = $row["body"];
                             $sdate = $row['sdate'];
@@ -224,18 +224,31 @@ $db = $database->getConnection();
                             $fromemail = $row["email"];                            
                         }
 
+                        if($email == $toemail){
+                            $sender = $toemail;
+                            $reciever = $fromemail;
+                            $senderid = $toid;
+                            $recieverid = $fromid; 
+                        }
+                        else{
+                            $sender = $fromemail;
+                            $reciever = $toemail;
+                            $senderid = $fromid;
+                            $recieverid = $toid; 
+                        }
+
                         ?>
                         <form action="replysubmit.php" onsubmit="return callme();" method="post">
                           <table class="table ">
                             <tbody>
                             <tr>
                                 <td><b>From :</b></td>
-                                <td><input type="text" name="fromemail" value="<?php echo $fromemail;?>" size="50" readonly="readonly"></td>
+                                <td><input type="text" name="fromemail" value="<?php echo $reciever;?>" size="50" readonly="readonly"></td>
                                 
                             </tr>
                             <tr>
                                 <td><b>To :</b></td>
-                                <td><input type="text" name="toemail" value="<?php echo $toemail;?>" size="50" readonly="readonly"></td>
+                                <td><input type="text" name="toemail" value="<?php echo $sender;?>" size="50" readonly="readonly"></td>
                                 
                             </tr>
                             <tr>
@@ -246,12 +259,12 @@ $db = $database->getConnection();
                                 
                             </tr>
                             <tr>
-                                <td>Message :</td><td style="border:1px solid black;"><div contenteditable="true" id="rmessage"><br><p style="margin-left:20px;"><font color="#cccccc">On <?php echo $sdate;?>,<?php echo $fromemail;?> wrote:</font> <br> <?php echo $body;?></p></div></td>
+                                <td>Message :</td><td style="border:1px solid black;"><div contenteditable="true" id="rmessage"><br><div style="margin-left:20px;"><font color="#cccccc">On <?php echo $sdate;?>,<?php echo $fromemail;?> wrote:</font> <br> <?php echo $body;?></div></div></td>
                             </tr>
                             <td colspan="2">
                                      <input type="submit" name='reply' value='reply' class="btn btn-primary" > 
-                                     <input type="hidden" name="toid" value="<?php echo $toid;?>">
-                                     <input type="hidden" name="fromid" value="<?php echo $fromid;?>">
+                                     <input type="hidden" name="fromid" value="<?php echo $senderid;?>">
+                                     <input type="hidden" name="toid" value="<?php echo $recieverid;?>">
                                      <input type="hidden" name="amessage" id="amessage" value="">  
                             </td>
 

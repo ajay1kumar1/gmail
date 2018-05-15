@@ -150,7 +150,7 @@ else
                                 if($row = $result->fetch_assoc()) { //print_r($row);
 
                                     $fromid = $row["fromid"];
-                                    $toid = $row["id"];
+                                    $toid = $row["toid"];
                             
                                     // Get to ID details //
                                     $sql = 'select * from users where id = '.$toid;
